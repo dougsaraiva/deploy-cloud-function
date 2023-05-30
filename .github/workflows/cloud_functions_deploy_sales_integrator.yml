@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   https_trigger:
-    if: ${{ github.event_name == 'push' || github.repository == github.event.pull_request.head.repo.full_name && github.actor != 'dependabot[bot]' }}
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged }}
     permissions:
       contents: 'read'
       id-token: 'write'
