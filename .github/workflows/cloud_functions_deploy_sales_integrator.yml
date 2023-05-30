@@ -34,11 +34,9 @@ jobs:
       - name: Set credentials file as output
         run: echo "{name}=$GITHUB_WORKSPACE/gha-creds.json" >> $GITHUB_OUTPUT
         
-        
-
-    - id: 'deploy'
-      uses: './'
-      with:
+      - id: 'deploy'
+        uses: './'
+        with:
           name: 'sales-integrator'
           runtime: 'python311'
           entry_point: 'read_gcs'
