@@ -9,7 +9,7 @@ on:
     branches:
       - 'main'
       - 'develop'
-    paths-ignore: # Ignore qualquer push feito para a pasta onde o fluxo de trabalho está definido
+    paths-ignore: 
       - '**'
   
   workflow_dispatch:
