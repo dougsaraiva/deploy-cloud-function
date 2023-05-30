@@ -3,7 +3,15 @@ on:
     branches:
       - 'main'
       - 'develop'
-
+    types:
+      - closed
+  push: 
+    branches:
+      - 'main'
+      - 'develop'
+    paths-ignore: # Ignore qualquer push feito para a pasta onde o fluxo de trabalho está definido
+      - '**'
+  
   workflow_dispatch:
 
 concurrency:
@@ -12,7 +20,7 @@ concurrency:
 
 jobs:
   https_trigger:
-    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged }}
+    if: ${{ github.event.pull_request.merged == true }}
     permissions:
       contents: 'read'
       id-token: 'write'
