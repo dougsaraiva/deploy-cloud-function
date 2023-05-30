@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   https_trigger:
-    if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged }}
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged }}
     permissions:
       contents: 'read'
       id-token: 'write'
