@@ -3,6 +3,13 @@ on:
     branches:
       - 'main'
       - 'develop'
+  push: 
+    branches:
+      - 'main'
+      - 'develop'
+    paths-ignore: # Ignore qualquer push feito para a pasta onde o fluxo de trabalho está definido
+      - '**'
+  
   workflow_dispatch:
 
 concurrency:
