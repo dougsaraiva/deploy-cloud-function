@@ -1,0 +1,12 @@
+
+    - id: 'deploy'
+      uses: './'
+      with:
+          name: '{{cookiecutter.google_function_name}}'
+          runtime: '{{cookiecutter.runtime}}'
+          entry_point: '{{cookiecutter.entry_point}}'
+          source_dir: './{{cookiecutter.google_function_name}}/'
+          memory: '{{((cookiecutter.memory.replace("MB","")).replace("(default)","")).replace(" ", "")}}'
+          timeout: '{{(cookiecutter.timeout.replace("(default)","")).replace(" ", "")}}'
+          min_instances: {{cookiecutter.min_auto_scaling_instances}}
+          max_instances: {{cookiecutter.max_auto_scaling_instances}}
