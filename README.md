@@ -1,4 +1,4 @@
-## Criando uma nova function a partir de um template pré-definido.
+### Criando uma nova function a partir de um template pré-definido.
 A seguir um passo a passo como sobre efetuar a criação e configuração inicial de uma cloud function.
 
 ## Instalação do cookiecutter
