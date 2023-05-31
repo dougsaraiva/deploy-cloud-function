@@ -65,15 +65,31 @@ Dentro do dirétorio de cada template criado possuimos alguns arquivos que devem
 ```bash
  ./gcloud_functions_deploy.sh
 ``` 
-## workflow.sh
+## parameters.yaml
 Ele será utilizado para compor o arquivo que irá efetuar a orquestração do deploy no ambiente do Github.
 
 1. Certifique-se que encontra-se no diretório padrão "", e execute o código no terminal a seguir no terminal:
+
 ```
 cat config.yml [nome da google function]/parameters.yml > .github/workflows/[nome da google function].yml
 ```
 Substitua [nome da google function] pelo nome do diretório.
-Após a execução verifique se foi efetuad a criacão de um novo arquivo no caminho referido na linha de comando acima (.github/workflows/).
+
+2. Após a execução verifique se foi efetuad a criacão de um novo arquivo no caminho referido na linha de comando acima (.github/workflows/), acesse o arquivo e em paths mencione o nome/diretório onde encontra-se os arquivos inerente a cloud function a ser implementada.
+Substitua [nome da google function] pelo nome do diretório.
+
+```
+on:
+  pull_request:
+    branches:
+      - 'main'
+      - 'develop'
+    types:
+      - closed
+       
+    paths:
+      - '[nome da google function]/**'
+```
 
 ## requirements.txt
 O arquivo requirements.txt é comumente para especificar as dependências do projeto. No contexto de uma função do Google Cloud, o arquivo requirements.txt é usado para listar as bibliotecas Python que a função precisa para ser executada corretamente.
