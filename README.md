@@ -68,11 +68,11 @@ Dentro do dirétorio de cada template criado possuimos alguns arquivos que devem
 ## workflow.sh
 Ele será utilizado para compor o arquivo que irá efetuar a orquestração do deploy no ambiente do Github.
 
-1. Copie a linha de comando contida dentro do arquivo, certifique-se que encontra-se no diretório padrão "", execute o código no terminal, por exemplo:
-
+1. Certifique-se que encontra-se no diretório padrão "", e execute o código no terminal a seguir no terminal:
 ```
-cat config.yml google_function/parameters.yml > .github/workflows/cloud_functions_deploy_google_function.yml
+cat config.yml [nome da google function]/parameters.yml > .github/workflows/[nome da google function].yml
 ```
+Substitua [nome da google function] pelo nome do diretório.
 Após a execução verifique se foi efetuad a criacão de um novo arquivo no caminho referido na linha de comando acima (.github/workflows/).
 
 ## requirements.txt
