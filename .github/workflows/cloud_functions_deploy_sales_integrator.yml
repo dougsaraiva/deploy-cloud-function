@@ -5,10 +5,7 @@ on:
       - 'develop'
     types:
       - closed
-  push: 
-    branches:
-      - 'main'
-      - 'develop'
+       
     paths-ignore: 
       - 'sales_integrator/**'
 
