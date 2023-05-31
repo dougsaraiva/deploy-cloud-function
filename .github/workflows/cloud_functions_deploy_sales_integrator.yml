@@ -5,6 +5,12 @@ on:
       - 'develop'
     types:
       - closed
+  push: 
+    branches:
+      - 'main'
+      - 'develop'
+    paths-ignore: 
+      - 'sales_integrator/**'
 
   workflow_dispatch:
 
@@ -13,18 +19,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-
-  check_files:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Check modified files
-        id: files
-        run: echo "::set-output name=modified_files::$(git diff --name-only HEAD..$GITHUB_SHA)"
-
   https_trigger:
-    if: ${{ github.event.pull_request.merged == true && steps.check_files.outputs.modified_files == 'sales_integrator/*' }}
+    if: ${{ github.event.pull_request.merged == true }}
     permissions:
       contents: 'read'
       id-token: 'write'
