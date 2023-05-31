@@ -8,7 +8,8 @@ from pytz import timezone
 import time
 import json
 
-# Efetua a importação do módulo json e abrir o arquivo config.json
+# Efetua a importação do módulo json e abrir o arquivo config.json 
+# Teste
 with open('config.json', 'r')  as f:
     config_data = json.load(f)
 
