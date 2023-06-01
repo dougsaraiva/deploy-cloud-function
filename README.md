@@ -1,6 +1,9 @@
 # Criando uma nova function a partir de um template pré-definido.
 A seguir um passo a passo como sobre efetuar a criação e configuração inicial de uma cloud function.
 
+Atente-se ao tópico de Observações Importantes (https://github.com/dougsaraiva/deploy-cloud-function/edit/develop/README.md#observa%C3%A7%C3%B5es-importantes)
+
+
 ## Instalação do cookiecutter
 Cookiecutter fornece uma estrutura básica com arquivos e diretórios predefinidos.
 
@@ -49,7 +52,7 @@ Dentro do dirétorio de cada template criado possuimos alguns arquivos que devem
  O arquivo gcloud_functions_deploy contém um comando utilizado para implantar (deploy) uma função do Google Cloud Functions, recomenda-se ser utilizada para intuitos de testes no ambiente desenvolvimento, para executa-lo é necessário:
 
 1. Abra o terminal no Visual Code.
-2. Navegue até o diretório onde o arquivo gcloud_functions_deploy.sh está localizado, substitua [nome da google function] pelo nome do diretório: 
+2. Navegue até o diretório onde o arquivo gcloud_functions_deploy.sh está localizado, **substitua [nome da google function] pelo nome do diretório***: 
 
 ```
  cd [nome da google function]
@@ -65,15 +68,31 @@ Dentro do dirétorio de cada template criado possuimos alguns arquivos que devem
 ```bash
  ./gcloud_functions_deploy.sh
 ``` 
-## workflow.sh
+## parameters.yaml
 Ele será utilizado para compor o arquivo que irá efetuar a orquestração do deploy no ambiente do Github.
 
-1. Copie a linha de comando contida dentro do arquivo, certifique-se que encontra-se no diretório padrão "", execute o código no terminal, por exemplo:
+1. Certifique-se que encontra-se no diretório padrão "" e execute o código no terminal a seguir no terminal:
+**Substitua [nome da google function] pelo nome do diretório.**
+```
+cat config.yml [nome da google function]/parameters.yml > .github/workflows/[nome da google function].yml
+```
+
+
+2. Após a execução verifique se foi efetuada a criacão de um novo arquivo no caminho referido na linha de comando acima (.github/workflows/), acesse o arquivo e em paths mencione o nome/diretório onde encontra-se os arquivos inerente a cloud function a ser implementada, **substitua [nome da google function] pelo nome do diretório.**
+
 
 ```
-cat config.yml google_function/parameters.yml > .github/workflows/cloud_functions_deploy_google_function.yml
+on:
+  pull_request:
+    branches:
+      - 'main'
+      - 'develop'
+    types:
+      - closed
+       
+    paths:
+      - '[nome da google function]/**'
 ```
-Após a execução verifique se foi efetuad a criacão de um novo arquivo no caminho referido na linha de comando acima (.github/workflows/).
 
 ## requirements.txt
 O arquivo requirements.txt é comumente para especificar as dependências do projeto. No contexto de uma função do Google Cloud, o arquivo requirements.txt é usado para listar as bibliotecas Python que a função precisa para ser executada corretamente.
