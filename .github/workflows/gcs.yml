@@ -7,7 +7,7 @@ on:
       - closed
        
     paths:
-      - '/**'
+      - 'gcs/**'
 
   workflow_dispatch:
 
