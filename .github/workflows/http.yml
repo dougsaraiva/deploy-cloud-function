@@ -25,13 +25,19 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@v3'
+      
+
 
       - name: Set up Google Cloud SDK
         uses: google-github-actions/auth@v0.6.0
         with:
-          credentials_json: ${{ github.ref == 'refs/heads/main' && secrets.GOOGLE_APPLICATION_CREDENTIALS || secrets.GOOGLE_APPLICATION_CREDENTIALS_DEV }}
+          credentials_json: ${{ github.ref == 'main' && secrets.GOOGLE_APPLICATION_CREDENTIALS || secrets.GOOGLE_APPLICATION_CREDENTIALS_DEV }}
         env:
           MY_OUTPUT_VARIABLE: ${{ steps.step_id.outputs.output_name }}
+          
+      - name: Print GitHub ref
+        run: echo "${{ github.ref }}"
+
 
       - name: Save credentials JSON to file
         run: echo "$GOOGLE_APPLICATION_CREDENTIALS" > "$GITHUB_WORKSPACE/gha-creds.json"
