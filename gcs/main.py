@@ -5,4 +5,4 @@ def hello(event, context):
          context (google.cloud.functions.Context): Metadata for the event.
     """
     file = event
-    print(f"Processing file: {file['name']}.")
+    print(f"Processing: {file['name']}.")
