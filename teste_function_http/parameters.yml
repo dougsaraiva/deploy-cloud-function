@@ -2,11 +2,11 @@
     - id: 'deploy'
       uses: './'
       with:
-          name: 'teste_http'
+          name: 'teste_function_http'
           runtime: 'python311'
           region: 'us-east1'
           entry_point: 'hello_world'
-          source_dir: './teste_http/'
+          source_dir: './teste_function_http/'
           memory: '128'
           timeout: '30s'
           min_instances: 0

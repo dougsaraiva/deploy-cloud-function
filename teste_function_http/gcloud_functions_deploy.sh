@@ -1,4 +1,4 @@
-gcloud functions deploy teste_http \
+gcloud functions deploy teste_function_http \
   --entry-point hello_world \
   --runtime python311 \
   --region us-east1 \
