@@ -1,5 +1,0 @@
-# package>=version
-google-cloud-storage
-google-cloud-bigquery
-datetime
-pytz

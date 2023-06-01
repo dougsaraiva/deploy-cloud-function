@@ -1,4 +1,4 @@
-def teste(request):
+def hello(request):
     """Responds to any HTTP request.
     Args:
         request (flask.Request): HTTP request object.
@@ -13,4 +13,4 @@ def teste(request):
     elif request_json and 'message' in request_json:
         return request_json['message']
     else:
-        return f'Olá'
+        return f'Hello World!'

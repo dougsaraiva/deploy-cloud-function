@@ -1,9 +1,0 @@
-{
-    "BIGQUERY": {
-        "table_name": "raw_sales_bkb_",
-        "table_name_log": "log_raw_sales_bkb",
-        "project_id": "dp-c360-prd",
-        "dataset_id": "mwpos"   
-    }
-}
-
