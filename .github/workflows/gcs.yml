@@ -1,0 +1,59 @@
+on:
+  pull_request:
+    branches:
+      - 'main'
+      - 'develop'
+    types:
+      - closed
+       
+    paths:
+      - '/**'
+
+  workflow_dispatch:
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+
+jobs:
+  https_trigger:
+    if: ${{ github.event_name == 'push' || github.repository == github.event.pull_request.head.repo.full_name && github.actor != 'dependabot[bot]' }}
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v3'
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/auth@v0.6.0
+        with:
+          credentials_json: ${{ github.ref == 'refs/heads/main' && secrets.GOOGLE_APPLICATION_CREDENTIALS || secrets.GOOGLE_APPLICATION_CREDENTIALS_DEV }}
+        env:
+          MY_OUTPUT_VARIABLE: ${{ steps.step_id.outputs.output_name }}
+
+      - name: Save credentials JSON to file
+        run: echo "$GOOGLE_APPLICATION_CREDENTIALS" > "$GITHUB_WORKSPACE/gha-creds.json"
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.setup.outputs.credentials_json }}
+        
+      - name: Set credentials file as output
+        run: echo "{name}=$GITHUB_WORKSPACE/gha-creds.json" >> $GITHUB_OUTPUT
+
+      - id: 'deploy'
+        uses: './'
+        with:
+            name: 'gcs'
+            runtime: 'python311'
+            region: 'us-east1'
+            entry_point: 'hello'
+            source_dir: './gcs/'
+            memory: '128'
+            timeout: '30s'
+            min_instances: 0
+            max_instances: 1000
+            event_trigger_type: google.storage.object.finalize
+            event_trigger_resource: 'projects/_/buckets/est-aut'
+
+        
