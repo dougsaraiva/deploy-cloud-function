@@ -7,7 +7,7 @@ on:
       - closed
        
     paths:
-      - 'teste/**'
+      - 'http/**'
 
   workflow_dispatch:
 
@@ -44,11 +44,11 @@ jobs:
       - id: 'deploy'
         uses: './'
         with:
-            name: 'teste'
+            name: 'http'
             runtime: 'python311'
             region: 'us-east1'
-            entry_point: 'teste'
-            source_dir: './teste/'
+            entry_point: 'hello'
+            source_dir: './http/'
             memory: '128'
             timeout: '30s'
             min_instances: 0

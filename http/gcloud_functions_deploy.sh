@@ -1,5 +1,5 @@
-gcloud functions deploy teste \
-  --entry-point teste \
+gcloud functions deploy http \
+  --entry-point hello \
   --runtime python311 \
   --region us-east1 \
   --trigger-http \
