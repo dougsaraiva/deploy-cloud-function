@@ -9,13 +9,6 @@ on:
     paths:
       - '/**'
 
-  push: 
-    branches:
-      - 'main'
-      - 'develop'
-    paths-ignore: 
-      - '**'
-  
   workflow_dispatch:
 
 concurrency:
@@ -47,4 +40,3 @@ jobs:
         
       - name: Set credentials file as output
         run: echo "{name}=$GITHUB_WORKSPACE/gha-creds.json" >> $GITHUB_OUTPUT
-        
