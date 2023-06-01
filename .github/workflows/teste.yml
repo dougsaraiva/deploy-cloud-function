@@ -8,7 +8,7 @@ on:
        
     paths:
       - '/**'
-  
+
   workflow_dispatch:
 
 concurrency:
@@ -44,11 +44,11 @@ jobs:
       - id: 'deploy'
         uses: './'
         with:
-            name: 'teste_http'
+            name: 'teste'
             runtime: 'python311'
             region: 'us-east1'
-            entry_point: 'hello_world'
-            source_dir: './teste_http/'
+            entry_point: 'teste'
+            source_dir: './teste/'
             memory: '128'
             timeout: '30s'
             min_instances: 0
